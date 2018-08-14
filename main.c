@@ -60,6 +60,10 @@ int main(void)
     rpmsgConfig.fromArmHost = FROM_ARM_HOST;
     pru_rpmsg_lib_Conf(&rpmsgConfig);
 
+    pru_pwmss_lib_Init(0);
+    pru_pwmss_lib_Init(1);
+    pru_pwmss_lib_Init(2);
+
     // Run
     while (1)
     {
