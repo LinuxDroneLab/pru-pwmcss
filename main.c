@@ -48,7 +48,6 @@ int main(void)
 
 
     /* Compose RC lib with RPMSG lib */
-    int i = 0;
     pwmssConfig.onStart = pru_rpmsg_lib_Send;
     pwmssConfig.onStop = pru_rpmsg_lib_Send;
     pwmssConfig.onSetData = pru_rpmsg_lib_Send;
