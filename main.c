@@ -15,7 +15,7 @@
 int main(void)
 {
     PruRpmsgLibConfig rpmsgConfig;
-    PruPwmssLibConfig pwmssConfig[3] = {0};
+    PruPwmssLibConfig pwmssConfig = {0};
 
     volatile unsigned char *status;
 
@@ -49,14 +49,12 @@ int main(void)
 
     /* Compose RC lib with RPMSG lib */
     int i = 0;
-    for(i = 0; i<3; i++) {
-        pwmssConfig[i].onStart = pru_rpmsg_lib_Send;
-        pwmssConfig[i].onStop = pru_rpmsg_lib_Send;
-        pwmssConfig[i].onSetData = pru_rpmsg_lib_Send;
-        pwmssConfig[i].onSetDuty = pru_rpmsg_lib_Send;
-        pwmssConfig[i].onSetPeriod = pru_rpmsg_lib_Send;
-    }
-    pru_pwmss_lib_Conf(pwmssConfig);
+    pwmssConfig.onStart = pru_rpmsg_lib_Send;
+    pwmssConfig.onStop = pru_rpmsg_lib_Send;
+    pwmssConfig.onSetData = pru_rpmsg_lib_Send;
+    pwmssConfig.onSetDuty = pru_rpmsg_lib_Send;
+    pwmssConfig.onSetPeriod = pru_rpmsg_lib_Send;
+    pru_pwmss_lib_Conf(&pwmssConfig);
 
     rpmsgConfig.onReceived = pru_pwmss_lib_ExecCmd;
     rpmsgConfig.hostInt = HOST_INT;
