@@ -15,7 +15,7 @@
 int main(void)
 {
     PruRpmsgLibConfig rpmsgConfig;
-    PruPwmssLibConfig pwmssConfig = {0};
+    PruDShotLibConfig pwmssConfig = {0};
 
     volatile unsigned char *status;
 
